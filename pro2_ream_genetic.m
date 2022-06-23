@@ -24,8 +24,8 @@ optimOpts = optimoptions('ga', ...
     'UseParallel',true, ...
     'PlotFcn',{@gaplotbestindiv, @gaplotbestf},...
     'MaxGenerations',50, ...
-    'MaxStallGenerations',1, ...
-    'FunctionTolerance',10);
+    'MaxStallGenerations',5, ...
+    'FunctionTolerance',20);
 [lMax,tMax] = ga(@(l) fun(l,[tau1;tau2]),2,[],[],[],[],lb,ub,[],optimOpts); 
 % sometimes error无法执行赋值，因为左侧的大小为 1×1，右侧的大小为 0×0。
 tMax = -tMax;
@@ -33,7 +33,7 @@ tMax = -tMax;
 %% 
 rmpath(genpath('funcs'));
 
-%% 
+%% object function
 function te = fun(l,tau)
 tspan = [0 500];
 q0 = [0;0;0;0];
